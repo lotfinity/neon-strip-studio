@@ -1,6 +1,6 @@
 {
   "name": "neon-strip-studio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Editable WLED strip and screensaver player",
   "main": "desktop/main.cjs",

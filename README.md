@@ -20,6 +20,8 @@ Source is published for access and inspection; no open-source license has been g
 
 ## Default strip
 
+Version 1.0.1 uses the supplied `my-neon-strip.json` profile as its factory default: the edited perimeter and infinity, glow 0.95, brightness 0.65, and 60 fps. Existing saved designs are preserved. After upgrading, choose **Reset shape** for the new geometry, or **Load design** with the release's `my-neon-strip.json` to apply the complete profile. New installs use it automatically.
+
 One editable, connected 150-group neon strip: 120 perimeter groups followed by 30 groups for the connecting lead and infinity. The initial geometry is an approximation of the supplied photos and 172 × 35 cm design concept. Edit to match the finished strip; starting corner/direction are not yet confirmed.
 
 ## Edit and share

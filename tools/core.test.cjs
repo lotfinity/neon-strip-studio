@@ -6,3 +6,6 @@ test('matrix dimensions and truncation are checked',()=>{let a=new Uint8Array(45
 test('direction and offsets never move a color across the 120/30 split',()=>{for(const [base,count]of [[0,120],[120,30]])for(const reverse of [false,true])for(const offset of [-1,0,5,119])for(let k=0;k<count;k++){const i=C.indexAt({count,offset,reverse},k,base);assert.ok(i>=base&&i<base+count)}});
 test('import rejects malformed coordinates and impossible recording data',()=>{const d=C.defaults();d.paths[0].points[1][0]=null;assert.throws(()=>C.validate(d));const e=C.defaults();e.recording={duration:100,frames:[{t:0,rgb:'bad'}]};assert.throws(()=>C.validate(e));const f=C.defaults();f.recording={duration:100,frames:[{t:0,rgb:Buffer.alloc(450).toString('base64')}]};assert.equal(C.validate(f).recording.frames.length,1)});
 test('import snaps inner start to perimeter endpoint',()=>{const d=C.defaults();d.paths[1].points[0]=[10,10];assert.deepEqual(C.validate(d).paths[1].points[0],d.paths[0].points.at(-1))});
+
+test('factory default exactly matches the user-supplied design',()=>{assert.deepEqual(C.defaults(),require('../examples/mirror-infinity.json'))});
+test('editing a default instance cannot mutate future defaults',()=>{const a=C.defaults(),expected=C.defaults();a.paths[0].points[0][0]+=99;a.glow=0;assert.deepEqual(C.defaults(),expected)});
