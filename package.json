@@ -1,0 +1,22 @@
+{
+  "name": "neon-strip-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Editable WLED strip and screensaver player",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tools/core.test.cjs tools/relay.test.cjs",
+    "pack:windows": "node tools/package.cjs win32",
+    "pack:linux": "node tools/package.cjs linux"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "45.0.0"
+  },
+  "author": "Personal project",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "ws": "8.22.0"
+  }
+}

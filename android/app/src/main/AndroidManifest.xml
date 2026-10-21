@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+ <application android:label="Neon Strip Studio" android:theme="@android:style/Theme.Material.NoActionBar" android:usesCleartextTraffic="true" android:allowBackup="false" android:hardwareAccelerated="true">
+  <activity android:name=".MainActivity" android:exported="true">
+   <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+  </activity>
+  <service android:name=".NeonDream" android:label="Neon Strip" android:exported="true" android:permission="android.permission.BIND_DREAM_SERVICE">
+   <intent-filter><action android:name="android.service.dreams.DreamService"/><category android:name="android.intent.category.DEFAULT"/></intent-filter>
+   <meta-data android:name="android.service.dream" android:resource="@xml/dream"/>
+  </service>
+ </application>
+</manifest>
