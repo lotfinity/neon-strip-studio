@@ -1,2 +1,2 @@
-const {contextBridge,ipcRenderer}=require('electron');contextBridge.exposeInMainWorld('neonNative',{exit:()=>ipcRenderer.send('neon-exit'),relayUrl:host=>ipcRenderer.invoke('neon-relay-url',host)});
+const {contextBridge,ipcRenderer}=require('electron');contextBridge.exposeInMainWorld('neonNative',{lowPower:process.env.NEON_LOW_POWER==='1',exit:()=>ipcRenderer.send('neon-exit'),relayUrl:host=>ipcRenderer.invoke('neon-relay-url',host)});
 window.addEventListener('DOMContentLoaded',()=>{if(location.search.includes('saver=1')){let ready=Date.now();for(const type of ['pointerdown','touchstart'])window.addEventListener(type,()=>{if(Date.now()-ready>1200)ipcRenderer.send('neon-exit')},{passive:true})}});

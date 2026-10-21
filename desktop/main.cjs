@@ -1,6 +1,7 @@
 const {app,BrowserWindow,ipcMain,screen,dialog}=require('electron');
 const path=require('node:path'),fs=require('node:fs'),cp=require('node:child_process');
 app.setName('Neon Strip Studio');
+let lowPower=process.env.NEON_LOW_POWER==='1';try{lowPower=lowPower||JSON.parse(fs.readFileSync(path.join(app.getPath('userData'),'performance.json'),'utf8')).lowPower===true}catch{}if(lowPower){process.env.NEON_LOW_POWER='1';app.disableHardwareAcceleration()}
 // Optional preview-only LAN relay. Started explicitly; normal players bind loopback only.
 const relayMode=process.argv.includes('--relay');
 if(relayMode){app.whenReady().then(()=>{const target=(process.argv.find(x=>x.startsWith('--target='))||'--target=192.168.1.164').slice(9);relay=require('./relay.cjs').createRelay({host:process.argv.includes('--lan')?'0.0.0.0':'127.0.0.1',port:8787,target});relay.ready.then(()=>console.log('Neon preview relay ready on port 8787')).catch(e=>{console.error(e);app.exit(1)})});process.on('SIGINT',()=>app.quit());process.on('SIGTERM',()=>app.quit())}

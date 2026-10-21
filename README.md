@@ -60,4 +60,6 @@ Android: JDK 17, Android SDK platform 35/build-tools 35, and Gradle 8.13. Set AN
 
 ## Implementation
 
+The source includes a low-power workaround for older graphics hardware. On this computer, create `performance.json` in the app's user-data folder (`~/.config/Neon Strip Studio` on Linux) containing `{"lowPower":true}`, or launch with `NEON_LOW_POWER=1`. This skips unsupported hardware acceleration and uses cached Canvas curves, standard pixel resolution, and a 20 fps compatibility limit. It leaves the saved design and its preferred frame-rate setting unchanged. Modern hardware continues to use WebGL. This workaround is in source and has been validated on legacy Intel Ironlake graphics; the published v1.0.1 packages predate it.
+
 Buildless JavaScript editor, Catmull–Rom curves sampled by arc length, one WebGL mesh and a 150-pixel color texture. Glow is computed in a GPU shader; no per-LED blur calls. A reduced-glow Canvas renderer handles devices without WebGL. Default 30 fps with 20/60 options; pixel density capped for performance. Windows/Linux share the Electron host; Android uses WebView + DreamService. Layout and recording JSON is validated before use. Native installation/idle activation is never performed automatically by building the package.

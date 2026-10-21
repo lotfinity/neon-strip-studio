@@ -6,7 +6,7 @@
   "main": "desktop/main.cjs",
   "scripts": {
     "start": "electron .",
-    "test": "node --test tools/core.test.cjs tools/relay.test.cjs",
+    "test": "node --test tools/core.test.cjs tools/relay.test.cjs tools/compatibility-renderer.test.cjs",
     "pack:windows": "node tools/package.cjs win32",
     "pack:linux": "node tools/package.cjs linux"
   },
